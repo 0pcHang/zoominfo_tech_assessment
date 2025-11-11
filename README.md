@@ -61,4 +61,4 @@ CI/CD:
 
 Notes, trade-offs, and next steps:
 - Trade-offs: default uses the small (base) model which balances speed and quality.
-- Next steps: live stream transcriptions, and multiple language support.
+- Next steps: live stream transcriptions, and multiple language support. Also enable CI/CD for next time (couldn't get it completed in time)
