@@ -1,0 +1,14 @@
+version: "3.8"
+services:
+  transcriber:
+    build: .
+    image: whisper-transcriber:latest
+    container_name: whisper-transcriber
+    restart: unless-stopped
+    environment:
+      - WHISPER_MODEL=${WHISPER_MODEL:-base}
+      # - WHISPER_DEVICE=${WHISPER_DEVICE:-cpu}
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./models:/root/.cache/whisper  # cache model weights here
