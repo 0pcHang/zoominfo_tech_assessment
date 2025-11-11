@@ -3,13 +3,11 @@ FROM python:3.12.3
 ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
-# system deps for pydub/soundfile and ffmpeg
 RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y \
     ffmpeg libsndfile1 build-essential git && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY requirements.txt .
 
-# install pip and wheels; use --no-cache-dir to keep image small
 RUN python -m pip install --upgrade pip setuptools wheel && \
     pip install --no-cache-dir -r requirements.txt
 

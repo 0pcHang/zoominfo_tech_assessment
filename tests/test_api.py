@@ -2,7 +2,6 @@ import pytest
 import os
 from fastapi.testclient import TestClient
 from app.main import app
-# import app.main
 from pathlib import Path
 
 client = TestClient(app)

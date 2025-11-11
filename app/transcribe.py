@@ -23,11 +23,8 @@ class Transcriber:
         """
         self.model_name = model_name
         device = device or os.environ.get("WHISPER_DEVICE")
-        # whisper.load_model will choose CPU if torch not configured for cuda
         logger.info("Loading whisper model=%s", model_name)
         try:
-            # whisper.load_model accepts device argument like "cpu" or "cuda"
-            # self.model = whisper.load_model(model_name, device=device or "cpu")
             self.model = whisper.load_model(model_name)
             self.ready = True
         except Exception:
@@ -56,8 +53,6 @@ class Transcriber:
     def transcribe_bytes(self, data: bytes, filename: str = "") -> Dict[str, Any]:
         wav_path = self._ensure_wav(data)
         try:
-            # whisper's transcribe returns dict with "text" and "segments"
-            # we forward language detection and segments
             result = self.model.transcribe(wav_path, task="transcribe")
             text = result.get("text", "").strip()
             segments = result.get("segments") or []
@@ -65,7 +60,11 @@ class Transcriber:
                 "text": text,
                 "language": result.get("language"),
                 "segments": [
-                    {"start": round(s.get("start", 0.0), 3), "end": round(s.get("end", 0.0), 3), "text": s.get("text", "").strip()}
+                    {
+                        "start": round(s.get("start", 0.0), 3),
+                        "end": round(s.get("end", 0.0), 3),
+                        "text": s.get("text", "").strip()
+                    }
                     for s in segments
                 ],
                 "model": self.model_name,

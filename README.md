@@ -7,7 +7,7 @@ Prerequisites:
 - Docker (for containerized run)
 - Python 3.12 (for local run)
 - ffmpeg installed (local runs and Docker image includes ffmpeg)
-- A small audio file for local tests (tests/sample_audio/hello.wav)
+- A small audio file for local tests (tests/sample_audio/hello.m4a)
 
 Local development:
 1. Create a virtualenv and install:
@@ -22,9 +22,8 @@ Local development:
    - WHISPER_MODEL (default "base") — model size to load
 
 Run tests:
-- Install pytest
-sudo apt install python3-pytest
-- Place a small WAV at tests/sample_audio/hello.wav
+- Start the app
+- Place a small M4A at tests/sample_audio/hello.m4a
 - Run: pytest -q
 
 Docker:
