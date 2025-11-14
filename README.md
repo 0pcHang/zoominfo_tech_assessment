@@ -10,18 +10,18 @@ Prerequisites:
 - A small audio file for local tests (tests/sample_audio/hello.m4a)
 
 Local development:
-1. Create a virtualenv and install:
-   python -m venv .venv
-   source .venv/bin/activate
-   pip install -r requirements.txt
+1. Create a virtualenv and install:  
+   python -m venv .venv  
+   source .venv/bin/activate  
+   pip install -r requirements.txt  
 
-2. Start the app:
+3. Start the app:  
    uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
-3. Environment variables:
+4. Environment variables:  
    - WHISPER_MODEL (default "base") — model size to load
 
-Run tests:
+Run tests:  
 - Start the app
 - Place a small M4A at tests/sample_audio/hello.m4a
 - Run: pytest -q
@@ -62,3 +62,4 @@ CI/CD:
 Notes, trade-offs, and next steps:
 - Trade-offs: default uses the small (base) model which balances speed and quality.
 - Next steps: live stream transcriptions, and multiple language support. Also enable CI/CD for next time (couldn't get it completed in time)
+
